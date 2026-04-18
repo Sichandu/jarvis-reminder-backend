@@ -5,8 +5,17 @@ from firebase_admin import credentials, messaging
 from datetime import datetime
 import threading
 import time
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # 🔥 INIT FIREBASE ADMIN
 cred = credentials.Certificate("serviceAccountKey.json")
